@@ -1,1 +1,66 @@
 @import "bootstrap/scss/bootstrap";
+
+/* classi file output */
+.set-variable {
+    color: #00FF7F;
+}
+
+.name-variable {
+    color: #FF4500;
+}
+
+.end-variable {
+    color: #00FF7F;
+}
+
+.obj-output {
+    color: #00FFFF;
+}
+
+.dot-output {
+    color: #FFD700;
+}
+
+.squares-output {
+    color: #9932CC;
+}
+
+.text-squares-output {
+    color: #00FFFF;
+}
+
+.end-output {
+    color: #FF69B4;
+}
+
+span {
+    &.set-variable,
+    &.name-variable,
+    &.end-variable,
+    &.obj-output,
+    &.dot-output,
+    &.squares-output,
+    &.text-squares-output,
+    &.end-output {
+        font-size: 17px;
+        font-family: monospace;
+    }
+}
+
+//scrollbar
+::-webkit-scrollbar {
+    width: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #2b3035;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #3f454b;
+    &:hover {
+      background: #198754;
+    }
+  }
