@@ -15,7 +15,7 @@ This project is an interactive JSON viewer developed with Vue.js and Vite. It al
 1. Clone the repository:
 
 ```
-git clone https://github.com/matteocicigoi/json-viewer-vue-vite.git
+git clone https://github.com/matteocicigoi/json-viewer.git
 ```
 
 2. Navigate to the project directory:
@@ -69,7 +69,7 @@ Questo progetto è un visualizzatore JSON interattivo sviluppato con Vue.js e Vi
 1. Clona il repository:
 
 ```
-git clone https://github.com/matteocicigoi/json-viewer-vue-vite.git
+git clone https://github.com/matteocicigoi/json-viewer.git
 ```
 
 2. Naviga nella directory del progetto:
