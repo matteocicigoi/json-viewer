@@ -21,7 +21,7 @@ git clone https://github.com/matteocicigoi/json-viewer.git
 2. Navigate to the project directory:
 
 ```
-cd json-viewer-vue-vite
+cd json-viewer
 ```
 
 3. Install dependencies:
@@ -75,7 +75,7 @@ git clone https://github.com/matteocicigoi/json-viewer.git
 2. Naviga nella directory del progetto:
 
 ```
-cd json-viewer-vue-vite
+cd json-viewer
 ```
 
 3. Installa le dipendenze:
