@@ -12,10 +12,30 @@ export default {
             this.store.output = null
             this.store.outputError = null
             this.store.loading = true;
+
+            // se inserisce un json
+            if(this.store.url[0] === '{' && this.store.url[this.store.url.length - 1]  === '}'){
+                let error = false;
+                try {
+                    JSON.parse(this.store.url);
+                } catch (e) {
+                    error = true;
+                }
+                if(error === false)this.store.output = JSON.parse(this.store.url);
+                this.store.selectedKeys = [];
+                this.store.parentKeys = [];
+                this.store.loading = false;
+                return
+            }
+            // url
             axios.get(this.store.url)
                 .then(function (response) {
                     // handle success
-                    store.output = response.data;
+                    if(typeof response.data !== 'string'){
+                        store.output = response.data;
+                    }else{
+                        store.outputError = 'Invalid link or response';
+                    }
                 })
                 .catch(function (error) {
                     // handle error
@@ -44,7 +64,7 @@ export default {
     <div class="form-floating mb-3 d-flex">
         <input type="text" class="form-control form-link shadow-none" id="form-link" placeholder="link" v-model="store.url">
         <button :disabled="!isLink()" type="button" :class="{'btn-outline-success' : isLink(), 'btn-outline-secondary' : !isLink()}" class="btn ms-3" @click="search()">Run</button>
-        <label for="form-link">URL</label>
+        <label for="form-link">URL or JSON</label>
     </div>
     <!-- Fine Ricerca -->
 </template>

@@ -318,6 +318,9 @@ export default {
         </div>
         <!-- Fine Sezione Json -->
     </div>
+    <div v-if="store.outputError" class="alert alert-danger" role="alert">
+        {{ store.outputError }}
+    </div>
 </template>
 
 <style scoped lang="scss">
