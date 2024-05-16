@@ -34,7 +34,7 @@ export default {
         // gestice le line del json e se la linea ha una chiave
         isKey(line) {
             // prima dei due punti e senza spazi attorno
-            line = line.split(':')[0].trim();
+            line = line.replace(/:([^"]*("[^"]*"[^"]*)*$)/g, '').trim();
             const lineLenght = line.length;
             // se il primo e l'ultimo carattere sono "
             if(line[0] === '"' && line[lineLenght - 1] === '"'){
@@ -42,7 +42,6 @@ export default {
                 const key = line.substring(1, lineLenght - 1).replace('STARTREAD-', '');
                 const splitKey = key.split('-');
                 const keyLenght = splitKey.length;
-
                 return [key, splitKey[keyLenght - 1]];
             }
             return false;
@@ -55,7 +54,6 @@ export default {
             if(getInfo[0] === key){
                 // se il tempo non è null ed è minore n secondi
                 if(getInfo[1] !== null && (getInfo[1] + delay) - new Date().getTime() >= 0){
-                    console.log('due click veloci');
 
                     if(this.addRemoveKeys(key, false, false, false, true) === 'add'){
                         // aggiunge
@@ -66,7 +64,6 @@ export default {
                     }
                 }else{
                     //stessa chiave ma click più lenti
-                    console.log('click stesso elemento lenti');
                     this.addRemoveKeys(key, false, false, true, false);
                 }
                 this.clickInfo = [null, null];
@@ -226,10 +223,22 @@ export default {
            variableName = keys[0];
            const variableType = this.setConst ? 'const' : 'let';
             for(let i = 1; i < keysLength; i++){
-                if(!isNaN(keys[i])){
-                    output += '<span class="squares-output">[</span><span class="text-squares-output">' + keys[i]  +'</span><span class="squares-output">]</span>';
+                let key;
+                let editKey = false;
+                if(keys[i].includes(':')) {
+                    key = '<span class="squares-output">[</span><span class="dot-output">"</span><span class="text-squares-output">' + keys[i] +'</span><span class="dot-output">"</span><span class="squares-output">]</span>';
+                    editKey = true;
                 }else{
-                    output += '<span class="dot-output">.</span>' + keys[i];
+                    key = keys[i];
+                }
+                if(!isNaN(keys[i])){
+                    output += '<span class="squares-output">[</span><span class="text-squares-output">' + key  +'</span><span class="squares-output">]</span>';
+                }else{
+                    if(editKey === false) {
+                        output += '<span class="dot-output">.</span>' + key;
+                    }else{
+                        output += key;
+                    }
                 }
                 variableName += keys[i].charAt(0).toUpperCase() + keys[i].slice(1); // rende la prima lettera maiuscola
             }
